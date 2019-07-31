@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header',
   template: `
-    <nav class="navbar">
+    <nav class="navbar is-white">
 
       <!-- logo -->
       <div class="navbar-brand">
         <a class="navbar-item">
-          <img src="https://bulma.io/images/bulma-logo.png">
+          <img src="assets/img/drexel_horizontal_blue.png">
         </a>
       </div>
     </nav>
