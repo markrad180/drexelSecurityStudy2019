@@ -17,27 +17,61 @@ import { Component, OnInit } from '@angular/core';
     <section class="section">
     <div class="container">
 
-      <!-- form goes here -->
-          <form (ngSubmit)="processForm()">
+    <!-- form goes here -->
+    <form (ngSubmit)="processForm()">
 
-            <!-- name -->
-            <div class="field">
-              <input type="text" name="name" class="input" placeholder="Your Name" [(ngModel)]="name">
-            </div>
+      <!-- name -->
+      <div class="field">
+        <input
+          type="text"
+          name="name"
+          class="input"
+          placeholder="Your Name"
+          [(ngModel)]="name"
+          required
+          minlength="3"
+          #nameInput="ngModel">
 
-            <!-- email -->
-            <div class="field">
-              <input type="email" name="email" class="input" placeholder="Your Email" [(ngModel)]="email">
-            </div>
+        <div class="help is-error" *ngIf="nameInput.invalid && nameInput.dirty">
+          Name is required and needs to be at least 3 characters long.
+        </div>
+      </div>
 
-            <!-- message -->
-            <div class="field">
-              <textarea class="textarea" name="message" placeholder="What's on your mind?" [(ngModel)]="message"></textarea>
-            </div>
+      <!-- email -->
+      <div class="field">
+        <input
+          type="email"
+          name="email"
+          class="input"
+          placeholder="Your Email"
+          [(ngModel)]="email"
+          required
+          email
+          #emailInput="ngModel">
 
-            <button type="submit" class="button is-danger is-large">Submit</button>
+        <div class="help is-error" *ngIf="emailInput.invalid && emailInput.dirty">
+          Needs to be a valid email.
+        </div>
+      </div>
 
-          </form>
+      <!-- message -->
+      <div class="field">
+        <textarea
+          class="textarea"
+          name="message"
+          placeholder="What's on your mind?"
+          [(ngModel)]="message"
+          required
+          #messageInput="ngModel"></textarea>
+
+          <div class="help is-error" *ngIf="messageInput.invalid && messageInput.dirty">
+            Your message is required!
+          </div>
+      </div>
+
+      <button [disabled]="messageInput.invalid || emailInput.invalid || nameInput.invalid" type="submit" class="button is-danger is-large">Submit</button>
+
+    </form>
 
     </div>
     </section>
